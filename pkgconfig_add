@@ -1,4 +1,26 @@
 # This file contains additional pkgconfig build requirements that did
 # not get picked up automatically. One name per line, no whitespace.
-libedit
-libffi
+Qt5Concurrent
+Qt5Core
+Qt5DBus
+Qt5Designer
+Qt5Gui
+Qt5Help
+Qt5Multimedia
+Qt5Network
+Qt5OpenGL
+Qt5Pdf
+Qt5PdfWidgets
+Qt5PrintSupport
+Qt5Qml
+Qt5Script
+Qt5Sql
+Qt5Svg
+Qt5Test
+Qt5UiPlugin
+Qt5UiTools
+Qt5Widgets
+Qt5X11Extras
+Qt5Xml
+quazip
+zlib

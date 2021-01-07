@@ -1,0 +1,70 @@
+From ba395215e98625da43c80184097e7c6bb02b14da Mon Sep 17 00:00:00 2001
+From: Francisco Boni <boboniboni@gmail.com>
+Date: Thu, 7 Jan 2021 20:06:36 -0300
+Subject: [PATCH] Fix build and make install
+
+---
+ chessx.pro    | 24 ++++++++++++++++++++++++
+ resources.qrc |  6 ------
+ 2 files changed, 24 insertions(+), 6 deletions(-)
+
+diff --git a/chessx.pro b/chessx.pro
+index 8e1364e..079c132 100644
+--- a/chessx.pro
++++ b/chessx.pro
+@@ -565,4 +565,28 @@ DISTFILES += \
+     mac_osx/qt_menu.nib \
+     data/lang/readme-lang.txt
+ 
++unix {
++    !defined(PREFIX, var):        PREFIX = /usr
++    !defined(BINDIR, var):        BINDIR = $$PREFIX/bin
++    !defined(DATADIR, var):       DATADIR = $$PREFIX/share
++
++    # The executable
++    target.path = $$BINDIR
++    target.files = $$DESTDIR/chessx
++    INSTALLS += target
++
++#     Icon
++#     icon.path = $$DATADIR/icons/hicolor/256x256/apps/
++#     icon.files = icons/.png
++#     INSTALLS += icon
++
++    # Desktop metadata
++    desktop.path = $$DATADIR/applications/
++    desktop.files = unix/chessx.desktop
++    INSTALLS += desktop
++    
++#     appdata.path = $$DATADIR/metainfo/
++#     appdata.files = ../desktop.appdata.xml
++#     INSTALLS += appdata
++}
+ 
+diff --git a/resources.qrc b/resources.qrc
+index c826912..172405e 100644
+--- a/resources.qrc
++++ b/resources.qrc
+@@ -12,11 +12,6 @@
+         <file alias="help/about4.html">data/help/about4.html</file>
+         <file alias="help/about5.html">data/help/about5.html</file>
+         <file alias="help/about6.html">data/help/about6.html</file>
+-        <file alias="i18n/chessx_da.qm">i18n/chessx_da.qm</file>
+-        <file alias="i18n/chessx_de.qm">i18n/chessx_de.qm</file>
+-        <file alias="i18n/chessx_fr.qm">i18n/chessx_fr.qm</file>
+-        <file alias="i18n/chessx_it.qm">i18n/chessx_it.qm</file>
+-        <file alias="i18n/chessx_cz.qm">i18n/chessx_cz.qm</file>
+         <file alias="images/accept.png">data/images/accept.png</file>
+         <file alias="images/annotate.png">data/images/annotate.png</file>
+         <file alias="images/arrow_green.png">data/images/arrow_green.png</file>
+@@ -180,7 +175,6 @@
+         <file alias="themes/shadow/leipzig.png">data/themes/shadow/leipzig.png</file>
+         <file alias="themes/shadow/merida.png">data/themes/shadow/merida.png</file>
+         <file alias="themes/shadow/spatial.png">data/themes/shadow/spatial.png</file>
+-        <file alias="i18n/chessx_ru.qm">i18n/chessx_ru.qm</file>
+         <file alias="images/threat_black.png">data/images/threat_black.png</file>
+         <file alias="images/threat_white.png">data/images/threat_white.png</file>
+         <file alias="images/black_wall.png">data/images/black_wall.png</file>
+-- 
+2.28.0
+
